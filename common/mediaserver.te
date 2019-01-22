@@ -30,6 +30,9 @@ allow mediaserver dts_data_file:file create_file_perms;
 # allow poweroffhandler to binder mediaserver
 binder_call(mediaserver, poweroffhandler);
 
+# Required for libqdutils MDPVersion::updatePanelInfo()
+# during WFD - opens /sys/class/graphics/fb0/msm_fb_type
+allow mediaserver sysfs_graphics:file r_file_perms;
 
 # for thermal sock files
 #unix_socket_connect(mediaserver, thermal, thermal-engine)
